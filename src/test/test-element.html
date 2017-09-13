@@ -1,0 +1,12 @@
+<link rel="import" href="../model/model-binding-mixin.html">
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="test-element">
+    <template>
+        <label for="first-name">First name</label>
+        <input type="text" name="fist_name" id="first-name" value="{{model.firstName::change}}">
+        <label for="last-name">Last name</label>
+        <input type="text" name="last_name" id="last-name" value="{{model.lastName::change}}">
+    </template>
+    <script src="test-element.js"></script>
+</dom-module>

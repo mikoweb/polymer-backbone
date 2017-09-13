@@ -1,0 +1,77 @@
+<!--
+@license
+Copyright (c) 2017 Rafał Mikołajun. All rights reserved.
+This code may only be used under the BSD style license found at LICENSE file.
+-->
+
+<link rel="import" href="../../bower_components/polymer/lib/utils/mixin.html">
+
+<script>
+(function() {
+    'use strict';
+
+    /**
+     * Mixin that provides PolymerModel Binding for custom Polymer elements.
+     *
+     * @mixinFunction
+     * @polymer
+     */
+    window.PolymerModelBindingMixin = Polymer.dedupingMixin((superClass) => {
+        /**
+         * @polymer
+         * @mixinClass
+         */
+        class ModelBindingMixin extends superClass {
+            /**
+             * @return {string}
+             */
+            static get modelObserver() {
+                return '_onChangeModel(model.*)';
+            }
+            static get observers() {
+                return [
+                    this.modelObserver
+                ];
+            }
+            /**
+             * @param {Object} properties
+             *
+             * @return {Object}
+             */
+            static addModelProperty(properties) {
+                properties.model = {
+                    type: Object,
+                    notify: true,
+                };
+
+                return properties;
+            }
+            static get properties() {
+                return this.addModelProperty({});
+            }
+            /**
+             * @param {Object} data
+             * @private
+             */
+            _onChangeModel(data) {
+                if (this.__stopModelTriggerChange !== true
+                    && _.isObject(this.$model)
+                    && _.isFunction(this.$model.trigger)
+                    && data.path.indexOf('model.') === 0
+                ) {
+                    const name = data.path.substr(6);
+
+                    if (_.isObject(this.$model.changed)) {
+                        this.$model.changed[name] = data.value;
+                    }
+
+                    this.$model.trigger('change', this.$model, data);
+                    this.$model.trigger('change:' + name, this.$model, data.value, data);
+                }
+            }
+        }
+
+        return ModelBindingMixin;
+    });
+})();
+</script>
