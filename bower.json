@@ -1,6 +1,6 @@
 {
   "name": "polymer-backbone",
-  "description": "Backbone model form Polymer with data bindings.",
+  "description": "Backbone model for Polymer with data bindings.",
   "keywords": [
     "polymer",
     "web-components",
