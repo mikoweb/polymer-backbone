@@ -26,16 +26,16 @@ Custom element code:
         <label for="last-name">Last name</label>
         <input type="text" name="last_name" id="last-name" value="{{model.lastName::change}}">
     </template>
-</dom-module>
-<script>
-    class MyElement extends PolymerModelBindingMixin(Polymer.Element) {
-        static get is() {
-            return 'my-element';
+    <script>
+        class MyElement extends PolymerModelBindingMixin(Polymer.Element) {
+            static get is() {
+                return 'my-element';
+            }
         }
-    }
-
-    window.customElements.define(MyElement.is, MyElement);
-</script>
+    
+        window.customElements.define(MyElement.is, MyElement);
+    </script>
+</dom-module>
 ```
 
 Code placed somewhere on the website:
