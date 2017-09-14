@@ -22,7 +22,7 @@ Custom element code:
 <dom-module id="my-element">
     <template>
         <label for="first-name">First name</label>
-        <input type="text" name="fist_name" id="first-name" value="{{model.firstName::change}}">
+        <input type="text" name="first_name" id="first-name" value="{{model.firstName::change}}">
         <label for="last-name">Last name</label>
         <input type="text" name="last_name" id="last-name" value="{{model.lastName::change}}">
     </template>
