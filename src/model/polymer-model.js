@@ -57,7 +57,7 @@
          * @param {Backbone.Model} model
          * @private
          */
-        _onChange(model) {
+        _onChange: function(model) {
             this._elements.forEach(function (el) {
                 if (_.isString(el.modelProp) && _.isObject(el.element) && _.isFunction(el.element.notifyPath)) {
                     for (var property in model.changed) {
