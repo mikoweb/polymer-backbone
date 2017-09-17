@@ -1,6 +1,6 @@
 {
-  "name": "polymer",
-  "short_name": "polymer",
+  "name": "polymer-backbone",
+  "short_name": "polymer-backbone",
   "start_url": "/",
   "display": "standalone"
 }
