@@ -8,11 +8,14 @@
     "model",
     "bindings"
   ],
-  "main": "index.html",
   "dependencies": {
-    "polymer": "Polymer/polymer#^2.0.0",
-    "backbone": "^1.3.0",
-    "lodash": "^4.0.0"
+    "polymer": "Polymer/polymer#^2.0.0"
+  },
+  "devDependencies": {
+    "backbone": "*",
+    "underscore": "*",
+    "web-component-tester": "Polymer/web-component-tester#^6.0.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0"
   },
   "authors": [
     "Rafał Mikołajun"
@@ -21,9 +24,5 @@
     "type": "git",
     "url": "https://github.com/mikoweb/polymer-backbone.git"
   },
-  "license": "BSD",
-  "devDependencies": {
-    "web-component-tester": "Polymer/web-component-tester#^6.0.0",
-    "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0"
-  }
+  "license": "BSD"
 }
