@@ -4,9 +4,6 @@
       "polymer-2"
     ]
   },
-  "fragments": [
-    "src/app.html"
-  ],
   "builds": [{
     "name": "bundled",
     "preset": "es5-bundled",
