@@ -1,6 +1,6 @@
 {
   "name": "polymer-backbone",
-  "description": "Backbone model for Polymer with data bindings.",
+  "description": "Bridge for using Backbone or Marionette with Polymer library.",
   "keywords": [
     "polymer",
     "web-components",
