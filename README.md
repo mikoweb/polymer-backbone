@@ -91,6 +91,8 @@ class XButtonCounter extends PolymerViewMixin(Polymer.Element, XButtonCounterVie
     }
     increase() {
         this.count++;
+        // You have access to the view
+        // this.view.$el - access to element main container
     }
 }
 ```
@@ -136,6 +138,9 @@ class XModal extends PolymerViewMixin(Polymer.Element, XModalView) {
     }
     open() {
         this.setAttribute('opened', 'opened');
+        // You have access to the view
+        // this.view.$el - access to element main container
+        // this.view.getUI('close') - access to close button element
     }
     close() {
         this.removeAttribute('opened');
