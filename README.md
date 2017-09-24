@@ -53,3 +53,92 @@ Code placed somewhere on the website:
 ```
 
 When you change `firstName` property on the model, then `input` inside shadow root is updated and vice versa also.
+
+# Backbone.View inside Element
+
+You can use the Backbone.View inside Element. To create a view for element use mixin 
+`PolymerViewMixin(elementClass, viewClass)`.
+
+Element with Backbone.View:
+
+```javascript
+class XButtonCounterView extends Backbone.View {
+    events() {
+        return {
+            'click .counter__button': '_onClickButton',
+        };
+    }
+    initialize(options) {
+        /** @type {XButtonCounter} */
+        this._element = options.element;
+    }
+    _onClickButton(e) {
+        this._element.increase();
+    }
+}
+
+class XButtonCounter extends PolymerViewMixin(Polymer.Element, XButtonCounterView) {
+    static get is() {
+        return 'x-button-counter';
+    }
+    static get properties() {
+        return {
+            count: {
+                type: Number,
+                value: 0,
+            },
+        };
+    }
+    increase() {
+        this.count++;
+    }
+}
+```
+
+# Marionette.View inside Element
+
+PolymerViewMixin it also works with Marionette Views.
+
+Element with Mn.View:
+
+```javascript
+class XModalView extends Mn.View {
+    ui() {
+        return {
+            close: '.modal__close',
+        };
+    }
+    events() {
+        return {
+            'click @ui.close': '_onClickClose',
+        };
+    }
+    initialize(options) {
+        /** @type {XModal} */
+        this._element = options.element;
+    }
+    _onClickClose(e) {
+        this._element.close();
+    }
+}
+
+class XModal extends PolymerViewMixin(Polymer.Element, XModalView) {
+    static get is() {
+        return 'x-modal';
+    }
+    static get properties() {
+        return {
+            opened: {
+                type: Boolean,
+                value: false,
+            },
+        };
+    }
+    open() {
+        this.setAttribute('opened', 'opened');
+    }
+    close() {
+        this.removeAttribute('opened');
+    }
+}
+```
