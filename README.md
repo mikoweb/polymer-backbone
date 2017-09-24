@@ -1,4 +1,4 @@
-# Backbone Models for Polymer
+# Backbone Model for Polymer
 [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/mikoweb/polymer-backbone)
 
 This simple library that provides Backbone Model for Polymer Custom Elements.
