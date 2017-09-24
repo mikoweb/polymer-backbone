@@ -1,0 +1,21 @@
+<link rel="import" href="../../../../polymer/polymer-element.html">
+<link rel="import" href="../../view-mixin.html">
+<link rel="import" href="style.html">
+
+<dom-module id="x-modal">
+    <template>
+        <style include="x-modal-style"></style>
+        <div class="modal" is-view>
+            <div class="modal__header">
+                <span class="modal__title">
+                    <slot name="title"></slot>
+                </span>
+                <button class="modal__close" type="button">x</button>
+            </div>
+            <div class="modal__content">
+                <slot name="content"></slot>
+            </div>
+        </div>
+    </template>
+    <script src="x-modal.js"></script>
+</dom-module>
