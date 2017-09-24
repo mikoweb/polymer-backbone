@@ -1,0 +1,77 @@
+<!--
+@license
+Copyright (c) 2017 Rafał Mikołajun. All rights reserved.
+This code may only be used under the BSD style license found at LICENSE file.
+-->
+
+<link rel="import" href="../../polymer/lib/utils/mixin.html">
+
+<script>
+(function() {
+    'use strict';
+
+    const map = new Map();
+
+    /**
+     * Mixin that provides Backbone.View or Mn.View for custom element.
+     *
+     * @mixinFunction
+     * @polymer
+     */
+    window.PolymerViewMixin = (superClass, viewClass) => {
+        if (!map.has(superClass) || !map.get(superClass).has(viewClass)) {
+            /**
+             * @polymer
+             * @mixinClass
+             */
+            class ViewMixin extends superClass {
+                /**
+                 * @return {constructor}
+                 */
+                static get viewClass() {
+                    return viewClass;
+                }
+                /**
+                 * @return {Backbone.View|Mn.View}
+                 */
+                get view() {
+                    return this._view;
+                }
+                constructor() {
+                    super();
+                    const viewClass = ViewMixin.viewClass;
+                    const view = new viewClass({element: this});
+                    view.template = false;
+                    view.render();
+                    this._view = view;
+                }
+                ready() {
+                    super.ready();
+
+                    const viewClass = ViewMixin.viewClass;
+                    const view = new viewClass({
+                        element: this,
+                        el: jQuery(this.shadowRoot.querySelector('*[is-view]')),
+                    });
+
+                    view.template = false;
+                    view.render();
+
+                    Object.defineProperty(this, '_view', {
+                        enumerable: false,
+                        configurable: false,
+                        writable: false,
+                        value: view,
+                    });
+                }
+            }
+
+            const viewsMap = map.has(superClass) ? map.get(superClass) : new Map();
+            viewsMap.set(viewClass, ViewMixin);
+            map.set(superClass, viewsMap);
+        }
+
+        return map.get(superClass).get(viewClass);
+    };
+})();
+</script>
